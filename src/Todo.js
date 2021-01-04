@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -13,7 +13,6 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 function Todo(props) {
   const dispatch = useContext(DispatchContext);
-
   const { completed, task, id } = props;
   const [isEditing, toggleIsEditing] = useToggle(false);
   return (
@@ -38,4 +37,4 @@ function Todo(props) {
   );
 }
 
-export default Todo;
+export default memo(Todo);
