@@ -7,13 +7,14 @@ const defaultTodos = [
   { id: 2, task: "Grow grasses", completed: false },
 ];
 export const TodosContext = createContext();
+export const DispatchContext = createContext();
 
 export function TodosProvider(props) {
-  // const { todos, addTodo, removeTodo, toggleTodo, saveTodo } = useTodoState(defaultTodos);
-
-  // todos below is the name of the state.
   const [todos, dispatch] = useReducer(todoReducer, defaultTodos);
 
-  // return <TodosContext.Provider value={{ todos, addTodo, removeTodo, toggleTodo, saveTodo }}>{props.children}</TodosContext.Provider>;
-  return <TodosContext.Provider value={{ todos, dispatch }}>{props.children}</TodosContext.Provider>;
+  return (
+    <TodosContext.Provider value={todos}>
+      <DispatchContext.Provider value={dispatch}>{props.children}</DispatchContext.Provider>
+    </TodosContext.Provider>
+  );
 }
